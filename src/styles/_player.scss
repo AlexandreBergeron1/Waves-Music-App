@@ -18,6 +18,7 @@
   }
   p {
     padding: 1rem;
+    color: white;
   }
 }
 
@@ -25,10 +26,26 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem;
-  width: 30%;
+  width: 50%;
+  transition: color 0.5s ease;
   svg {
     cursor: pointer;
+    color: white;
+  }
+  .heart {
+    color: red;
+  }
+  .repeat {
+    color: dodgerblue;
+    animation: turn 0.5s ease-in-out 1;
+  }
+  @keyframes turn {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
   }
 }
 

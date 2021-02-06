@@ -4,14 +4,26 @@
   left: 0;
   width: 20rem;
   height: 100%;
-  background: white;
-  box-shadow: 2px 2px 50px rgb(204, 204, 204);
+  background: #292929;
+  box-shadow: 1px 1px 50px rgb(108, 108, 108);
   overflow: scroll;
   transform: translateX(-100%);
   transition: all 0.5s ease;
   opacity: 0;
-  h2 {
-    padding: 2rem;
+}
+
+.library-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem;
+  .icon {
+    font-size: 1rem;
+    transition: color 0.25s ease;
+    &:hover {
+      cursor: pointer;
+      color: white;
+    }
   }
 }
 
@@ -23,9 +35,14 @@
   transition: background 0.5s ease;
   img {
     width: 30%;
+    border-radius: 50%;
   }
   &:hover {
     background: rgb(222, 222, 255);
+    h3,
+    h4 {
+      color: black;
+    }
   }
 }
 
@@ -60,6 +77,10 @@
 
 .selected {
   background: rgb(239, 217, 239);
+  h3,
+  h4 {
+    color: black;
+  }
 }
 
 .active-library {

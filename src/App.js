@@ -21,6 +21,9 @@ function App() {
     duration: 0,
     animationPercentage: 0,
   });
+  const [wobble, setWobble] = useState(0);
+  const [repeat, setRepeat] = useState(false);
+  const [addFavorite, setAddFavorite] = useState(false);
   const [libraryStatus, setLibraryStatus] = useState(false);
   const timeUpdateHandler = (e) => {
     const current = e.target.currentTime;
@@ -39,13 +42,23 @@ function App() {
   };
   const songEndHandler = async () => {
     let currentIndex = songs.findIndex((song) => song.id === currentSong.id);
-    await setCurrentSong(songs[(currentIndex + 1) % songs.length]);
-    if (isPlaying) audioRef.current.play();
+    if (repeat) {
+      await setCurrentSong(songs[currentIndex % songs.length]);
+      if (isPlaying) audioRef.current.play();
+    } else {
+      await setCurrentSong(songs[(currentIndex + 1) % songs.length]);
+      if (isPlaying) audioRef.current.play();
+    }
   };
   return (
     <div className={`App ${libraryStatus ? "library-active" : ""}`}>
       <Nav libraryStatus={libraryStatus} setLibraryStatus={setLibraryStatus} />
-      <Song currentSong={currentSong} />
+      <Song
+        isPlaying={isPlaying}
+        currentSong={currentSong}
+        wobble={wobble}
+        setWobble={setWobble}
+      />
       <Player
         songs={songs}
         audioRef={audioRef}
@@ -56,14 +69,20 @@ function App() {
         songInfo={songInfo}
         setCurrentSong={setCurrentSong}
         setSongs={setSongs}
+        setRepeat={setRepeat}
+        repeat={repeat}
+        addFavorite={addFavorite}
+        setAddFavorite={setAddFavorite}
       />
       <Library
         audioRef={audioRef}
         songs={songs}
         setCurrentSong={setCurrentSong}
         libraryStatus={libraryStatus}
+        setLibraryStatus={setLibraryStatus}
         isPlaying={isPlaying}
         setSongs={setSongs}
+        setWobble={setWobble}
       />
       <audio
         onTimeUpdate={timeUpdateHandler}

@@ -8,10 +8,17 @@ const LibrarySong = ({
   audioRef,
   isPlaying,
   setSongs,
+  setWobble,
 }) => {
   const songSelectHandler = async () => {
     const selectedSong = songs.filter((state) => state.id === id);
     await setCurrentSong(selectedSong[0]);
+    //put the image on normal
+    if (isPlaying) {
+      setWobble(0);
+    } else {
+      setWobble(1);
+    }
     //add active state
     const newSongs = songs.map((song) => {
       if (song.id === id) {

@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPlay,
   faAngleLeft,
   faAngleRight,
   faPause,
+  faRedo,
+  faHeart,
 } from "@fortawesome/free-solid-svg-icons";
 
 const Player = ({
@@ -17,6 +19,10 @@ const Player = ({
   songs,
   setCurrentSong,
   setSongs,
+  setRepeat,
+  repeat,
+  addFavorite,
+  setAddFavorite,
 }) => {
   const activeLibraryHandler = (nextPrev) => {
     const newSongs = songs.map((song) => {
@@ -44,6 +50,7 @@ const Player = ({
       setIsPlaying(!isPlaying);
     }
   };
+
   const getTime = (time) => {
     return (
       Math.floor(time / 60) + ":" + ("0" + Math.floor(time % 60)).slice(-2)
@@ -96,7 +103,13 @@ const Player = ({
         </div>
         <p>{getTime(songInfo.duration || 0)}</p>
       </div>
-      <div className="play-control">
+      <div className="play-control" style={{ padding: "1rem" }}>
+        <FontAwesomeIcon
+          onClick={() => setAddFavorite(!addFavorite)}
+          className={`play-control ${addFavorite ? "heart" : ""}`}
+          style={{ fontSize: "24px" }}
+          icon={faHeart}
+        />
         <FontAwesomeIcon
           onClick={() => skipTrackHandler("skip-back")}
           className="skip-back"
@@ -114,6 +127,12 @@ const Player = ({
           className="skip-forward"
           size="2x"
           icon={faAngleRight}
+        />
+        <FontAwesomeIcon
+          onClick={() => setRepeat(!repeat)}
+          style={{ fontSize: "24px" }}
+          className={`play-control ${repeat ? "repeat" : ""}`}
+          icon={faRedo}
         />
       </div>
     </div>
