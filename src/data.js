@@ -3,9 +3,9 @@ function chillHop() {
   return [
     {
       name: "Adorable",
-      cover: "http://www.alexandrebergeron1.com/images/adorable.jpg",
+      cover: process.env.PUBLIC_URL + "/adorable.jpg",
       artist: "Jahy-Sama",
-      audio: "http://www.alexandrebergeron1.com/musique/jahy-sama-adorable.mp3",
+      audio: process.env.PUBLIC_URL + "/jahy-sama-adorable.mp3",
       color: ["#4f73fb", "#682c8c"],
       id: uuidv4(),
       active: true,
@@ -13,10 +13,11 @@ function chillHop() {
     },
     {
       name: "Alone",
-      cover: "http://www.alexandrebergeron1.com/images/alone.jpg",
+      cover: process.env.PUBLIC_URL + "/alone.jpg",
       artist: "Alan Walker & Ava Max",
       audio:
-        "http://www.alexandrebergeron1.com/musique/nightcore-alone-pt-ii-alan-walker-ava-max-lyrics.mp3",
+        process.env.PUBLIC_URL +
+        "/nightcore-alone-pt-ii-alan-walker-ava-max-lyrics.mp3",
       color: ["#205950", "#2ab3bf"],
       id: uuidv4(),
       active: false,
